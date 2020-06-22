@@ -1,9 +1,35 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
+import {gql} from 'apollo-boost';
+import {useQuery, useMutation} from '@apollo/react-hooks';
+
+
+const userMutation = gql`
+mutation($phone: String){
+  loginUser(input:{
+    phone:$phone
+  }){
+    success
+    message
+  }
+}
+`
 
 export default function GetStarted({navigation}){
-  const [phoneNumber, setphoneNumber] = useState("0") 
-  console.log(phoneNumber.length)
+  const [phoneNumber, setphoneNumber] = useState("0")
+  const [loginUser, {loading}] = useState(userMutation)
+  
+  async function LogIn(){
+      alert("processing")
+      await loginUser({variables: {phone:phoneNumber}})
+      .then((data)=>{
+         alert("hi")
+         console.log(data)
+      })
+      .catch(error=>{
+          console.log(error)
+      })
+  }
     return(
         
           <ImageBackground source={require('../../assets/fusion-medical-animation-EAgGqOiDDMg-unsplash.jpg')} resizeMode="cover" style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20 }}>

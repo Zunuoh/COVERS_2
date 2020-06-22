@@ -25,6 +25,8 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
+import {GlobalProvider} from './context/Global'
+
 const client = new ApolloClient({
   link: new HttpLink({uri: "https://covid19-graphql.netlify.app/"}), 
   cache: new InMemoryCache()
@@ -94,7 +96,8 @@ export default function App(){
 
   return(
     <ApolloProvider client={client}>
-      <countryContext.Provider value={{editedItem, handleItem, setState}}>
+      {/* <countryContext.Provider value={{editedItem, handleItem, setState}}> */}
+      <GlobalProvider>
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="GetStarted" component={GetStarted} 
@@ -113,7 +116,8 @@ export default function App(){
             />
           </Stack.Navigator>
         </NavigationContainer>
-        </countryContext.Provider>
+        </GlobalProvider>
+        {/* </countryContext.Provider> */}
     </ApolloProvider>
   )
 }

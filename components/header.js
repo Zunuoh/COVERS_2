@@ -21,7 +21,7 @@ export default function Header(props){
     }
 
     return(
-            <View style={{height: 110, padding: 20, width: 380,backgroundColor: "#fff", marginTop:7, borderBottomWidth: .3, borderBottomColor: "#ccc"}}>
+            <View style={{height: 120, padding: 15, width: 380,backgroundColor: "#fff", marginTop:7, borderBottomWidth: .3, borderBottomColor: "#ccc"}}>
                <SafeAreaView>
                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                        <TouchableOpacity onPress={()=>{setOpenAccount(!openAccount)}}>

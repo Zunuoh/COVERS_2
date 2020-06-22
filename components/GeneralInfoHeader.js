@@ -5,7 +5,7 @@ import {Ionicons} from '@expo/vector-icons'
 export default function InfoHeader(props){
 
     return(
-            <View style={{ padding: 20, marginTop: 10,width: 380,backgroundColor: "#fff",  borderBottomWidth: .6, borderBottomColor: "#ccc"}}>
+            <View style={{ padding: 20, marginTop: 30,width: 380,backgroundColor: "#fff",  borderBottomWidth: .6, borderBottomColor: "#ccc"}}>
                 <Text style={{fontSize: 35, fontWeight: "bold"}}>General information</Text>
             </View>
         

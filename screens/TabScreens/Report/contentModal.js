@@ -1,15 +1,52 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import {
     View,
     Text, 
     Modal, 
     TouchableOpacity, 
+    ActivityIndicator,
+    Alert,
     TextInput
 } from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
+import {GlobalContext} from '../../../context/Global'
+import colors from '../../../extras/colors'
 
 
 export default function ContentModal({Visible, Close}){
+    const [load, setLoad] = useState(false);
+    const [reportFor, setReportFor] = useState({});
+    const [address, setAddress] = useState('');
+    const [landMark, setLandMark] = useState('');
+    const [contact, setContact] = useState('');
+    const [description, setDescription] = useState('');
+
+    const { makeCaseReport } = useContext(GlobalContext);
+    
+    const rbData = [{ label: 'Self' }, { label: 'Other Individual' }];
+
+    let date = new Date()
+  
+  function submitReport() {
+    setLoad(true);
+    setTimeout(() => {
+      setLoad(false);
+      Alert.alert('Success', 'Case submitted', [
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]);
+      const newReport = {
+        id: Math.floor(Math.random() * 100000000),
+        reportFor:'Self',
+        landMark,
+        contact,
+        address,
+        description,
+        date : +date
+      };
+      makeCaseReport(newReport);
+    }, 2000);
+  }
+
     return(
         <Modal visible={Visible} animationType="slide" presentationStyle={'pageSheet'}>
             <View style={{padding: 20}}>
@@ -68,7 +105,7 @@ export default function ContentModal({Visible, Close}){
                         <View style={{marginVertical: 8}}>
                             <TextInput
                                 style={{borderWidth: 1, borderColor: "#eee", height: 45, padding: 10}}
-                                onPress={(age)=>{setAge(age)}}
+                                // onPress={(age)=>{setAge(age)}}
                             />
                         </View>
 
@@ -79,8 +116,10 @@ export default function ContentModal({Visible, Close}){
                                 </View>
                                 <View style={{marginTop: 8}}>
                                     <TextInput
+                                        value={landMark}
+                                        onChangeText={landMark => setLandMark(landMark)}
                                         style={{borderWidth: 1, borderColor: "#eee", height: 45, padding: 10}}
-                                        onPress={(age)=>{setAge(age)}}
+                                        // onPress={(age)=>{setAge(age)}}
                                     />
                                 </View>
                             </View>
@@ -90,8 +129,10 @@ export default function ContentModal({Visible, Close}){
                                 </View>
                                 <View style={{marginTop: 8}}>
                                     <TextInput
+                                    value={contact}
+                                    onChangeText={contact => setContact(contact)}
                                         style={{borderWidth: 1, borderColor: "#eee", height: 45, padding: 10}}
-                                        onPress={(age)=>{setAge(age)}}
+                                        // onPress={(age)=>{setAge(age)}}
                                     />
                                 </View>
                             </View>
@@ -104,18 +145,35 @@ export default function ContentModal({Visible, Close}){
 
                             <View style={{marginVertical: 8}}>
                                 <TextInput
+                                      value={description}
+                                      onChangeText={description => setDescription(description)}
                                     style={{borderWidth: 1, borderColor: "#eee", height: 90, padding: 10}}
-                                    onPress={(age)=>{setAge(age)}}
+                                    // onPress={(age)=>{setAge(age)}}
                                 />
                             </View>
                         </View>
                     </View>
                     
-                    <TouchableOpacity onPress={()=>{console.log("is pressed")}}>
+                    {/* <TouchableOpacity onPress={()=>{console.log("is pressed")}}>
                         <View style={{justifyContent: "center", alignItems: 'center', top: 140, position: "fixed", height: 45, backgroundColor: "#000"}}>
                             <Text style={{fontWeight: "bold", color: "#fff"}}>Report case</Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
+                      <View style={{ paddingHorizontal: 20, marginVertical: 50 }}>
+        <TouchableOpacity onPress={submitReport} style={{ backgroundColor: colors.button,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 52,
+    alignItems: 'center',}}>
+          {load ? (
+            <ActivityIndicator />
+          ) : (
+            <Text style={{fontWeight: "bold", color: "#fff"}}>
+              Report Case
+            </Text>
+          )}
+        </TouchableOpacity>
+      </View>
                 </View>
             </View>
         </Modal>
