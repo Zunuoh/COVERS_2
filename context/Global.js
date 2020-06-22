@@ -1,11 +1,12 @@
 import React, {useReducer, createContext, useMemo, useEffect} from 'react';
 import AppReduce from '../context/AppReduce';
 import {LogSymptoms} from '../components/vitalComponents/logSymptoms'
+import {Symptoms} from '../Data/data'
 
 
 const initialState = {
     reports: [],
-    symptoms:[],
+    symptoms:Symptoms,
     userVitals: [],
     phoneNumber: [],
   };

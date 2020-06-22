@@ -1,10 +1,12 @@
 import React, {useState, useContext} from 'react'; 
 import {View, Modal, Text, TouchableOpacity, TextInput, FlatList, Image} from 'react-native'
-import {Ionicons} from '@expo/vector-icons'
+import {Ionicons, AntDesign} from '@expo/vector-icons'
 import {useQuery} from '@apollo/react-hooks'
 import {countryContext} from '../../App'
 import Lottie  from 'lottie-react-native'
 import load from '../../assets/loading/loading_2.json'
+import RadioButtonRN from 'radio-buttons-react-native';
+import colors from '../../extras/colors'
 
 //other imports
 import Country_1 from './countryData'
@@ -69,6 +71,8 @@ export default function Account ({Visible, Close}){
         setFlag_2({...data})
     }
 
+    const fmData = [{ label: 'Female' }, { label: 'Male' }];
+
     return(
         <Modal visible={Visible} animationType="slide" presentationStyle={"pageSheet"} style={{borderRaduis: 10}}>
 
@@ -111,7 +115,7 @@ export default function Account ({Visible, Close}){
                         </View>
 
                         {/* RadioButtons */}
-                         <View style={{flexDirection: "row"}}>
+                         {/* <View style={{flexDirection: "row"}}>
                              <View style={{flexDirection: "row"}}>
                                 <View>
                                     <Ionicons
@@ -134,7 +138,31 @@ export default function Account ({Visible, Close}){
                                     <Text>Male</Text>
                                 </View>                                
                              </View>
-                         </View>
+                         </View> */}
+                         <View>
+            <RadioButtonRN
+              data={fmData}
+              // selectedBtn={(reportFor) => setReportFor({reportFor})}
+              animationTypes={['shake']}
+              circleSize={16}
+              initial={3}
+              box={false}
+              activeColor={colors.black}
+              inactiveColor={colors.grey}
+              textStyle={{
+                // fontFamily: 'AirbnbCereal-Bold',
+                letterSpacing: -0.4,
+              }}
+              icon={
+                <AntDesign
+                  name="checkcircle"
+                  size={20}
+                  // color="#2c9dd1"
+                />
+              }
+            />
+          </View>
+
 
                         {/* travelhistory */}
                         <View style={{marginVertical: 20}}>
@@ -178,7 +206,7 @@ export default function Account ({Visible, Close}){
                                 />
                             </View>
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={()=>{alert("You updated your profile succcessfully")}}>
                                 <View style={{height: 45, backgroundColor: "#000", justifyContent: 'center', alignItems: 'center',}}>
                                     <Text style={{color: "#fff"}}>Update Profile</Text>
                                 </View>

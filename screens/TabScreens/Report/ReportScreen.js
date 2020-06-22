@@ -46,12 +46,12 @@ export default function Report(){
        
           {reports.length <= 0 ? (
             <View style={styles.lottieContainer}>
-              <View style={{ marginVertical: 35 }}>
-              <Lottie source={load} autoPlay loop style={{width: 50, height: 250}}/>
+              <View style={{ marginVertical: 10 }}>
+              <Lottie source={load} autoPlay loop style={{width: 50, height:250}}/>
               </View>
               <View
                 style={{
-                  paddingTop: 60,
+                  paddingTop: 10,
                   justifyContent: 'space-between',
                   alignItems: 'center',
                 }}>
@@ -101,12 +101,12 @@ export default function Report(){
         marginTop: 30,
       },
       mainText: {
-        // fontFamily: 'AirbnbCereal-Bold',
+       
         letterSpacing: -0.2,
         color: colors.grey,
       },
       mainTitle: {
-        // fontFamily: 'AirbnbCereal-Bold',
+     
         letterSpacing: -0.2,
       },
     });

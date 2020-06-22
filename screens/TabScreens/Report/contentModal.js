@@ -8,9 +8,10 @@ import {
     Alert,
     TextInput
 } from 'react-native'
-import {Ionicons} from '@expo/vector-icons'
+import {Ionicons, AntDesign} from '@expo/vector-icons'
 import {GlobalContext} from '../../../context/Global'
 import colors from '../../../extras/colors'
+import RadioButtonRN from 'radio-buttons-react-native';
 
 
 export default function ContentModal({Visible, Close}){
@@ -72,7 +73,7 @@ export default function ContentModal({Visible, Close}){
                     </View>
 
                     {/* RadioButtons */}
-                    <View style={{flexDirection: "row", marginTop: 10}}>
+                    {/* <View style={{flexDirection: "row", marginTop: 10}}>
                              <View style={{flexDirection: "row"}}>
                                 <View>
                                     <Ionicons
@@ -95,7 +96,31 @@ export default function ContentModal({Visible, Close}){
                                     <Text>Other individual</Text>
                                 </View>                                
                              </View>
-                     </View>
+                     </View> */}
+
+<View>
+            <RadioButtonRN
+              data={rbData}
+              // selectedBtn={(reportFor) => setReportFor({reportFor})}
+              animationTypes={['shake']}
+              circleSize={16}
+              initial={3}
+              box={false}
+              activeColor={colors.black}
+              inactiveColor={colors.grey}
+              textStyle={{
+                // fontFamily: 'AirbnbCereal-Bold',
+                letterSpacing: -0.4,
+              }}
+              icon={
+                <AntDesign
+                  name="checkcircle"
+                  size={20}
+                  // color="#2c9dd1"
+                />
+              }
+            />
+          </View>
 
                     <View style={{marginTop: 20}}>
                         <View style={{marginLeft: 5}}>

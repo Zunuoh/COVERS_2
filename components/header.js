@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, SafeAreaView, TouchableOpacity, Modal, Image} from 'react-native';
-import {Ionicons} from '@expo/vector-icons'
+import {Ionicons, FontAwesome} from '@expo/vector-icons'
 
 // subcomponents
 import Account from '../screens/Modals/account'
@@ -26,7 +26,11 @@ export default function Header(props){
                    <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                        <TouchableOpacity onPress={()=>{setOpenAccount(!openAccount)}}>
                             <View>
-                                <Image source={require("../assets/man.png")} style={{height: 30, width: 30}}/>
+                                {/* <Image source={require("../assets/man.png")} style={{height: 30, width: 30}}/> */}
+                                <FontAwesome
+                                name="user"
+                                size={30}
+                                color="black"/>
                             </View>
                        </TouchableOpacity>
 
